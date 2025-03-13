@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"name": "ps-globomantics-webapi-react",
+			"path": "../../react-net-core/ps-globomantics-webapi-react"
+		}
+	],
+	"settings": {}
+}
