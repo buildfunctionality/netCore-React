@@ -2,11 +2,12 @@ using Microsoft.AspNetCore.Mvc;
 using MiniValidation;
 using Microsoft.Extensions.Options;
 using System.Net.Cache;
+using Microsoft.AspNetCore.Authorization;
 
 public static class WebApplicationBidExtensions{
     public static void MapBidExtensions(this WebApplication app){
         
-app.MapGet("house/{houseId:int}/bids",async (int houseId, IBidRepository bidRepo,IHouseRepository houseRepo) => {
+app.MapGet("house/{houseId:int}/bids",[Authorize]async (int houseId, IBidRepository bidRepo,IHouseRepository houseRepo) => {
  if (await houseRepo.Get(houseId) == null)
  return Results.Problem($"House {houseId} not found", statusCode:404);
  var bids = await bidRepo.Get(houseId);
@@ -14,7 +15,7 @@ app.MapGet("house/{houseId:int}/bids",async (int houseId, IBidRepository bidRepo
 });
 
 
-app.MapPost("house/{houseId:int}/bids",async (int houseId, [FromBody]BidDto dto,IBidRepository bidRepo) => {
+app.MapPost("house/{houseId:int}/bids",[Authorize]async (int houseId, [FromBody]BidDto dto,IBidRepository bidRepo) => {
  if (dto.HouseId != houseId)
     return Results.Problem($"Not match",statusCode:StatusCodes.Status400BadRequest);
 if(!MiniValidator.TryValidate(dto,out var errors))

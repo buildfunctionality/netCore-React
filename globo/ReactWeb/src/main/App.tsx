@@ -6,13 +6,19 @@ import Header from './Header';
 import HouseDetail from '../house/HouseDetail';
 import HouseAdd from '../house/HouseAdd';
 import HouseEdit from '../house/HouseEdit';
-
+import useFetchUser from "../hooks/UserHooks";
+import config from "../../config";
 
 function App() {
- 
+  const { isSuccess } = useFetchUser();
+  const loginUrl = `${config.baseApiUrl}/account/login`;
+  const logout = `${config.baseApiUrl}/account/logout`
+
   return (
     <BrowserRouter>
       <div className='container' >     
+        {!isSuccess && <a href={loginUrl}>Login</a>}
+        {isSuccess && <a href={logout}>Logout</a>}
         <Header subtitle='Providing houses all over the world'></Header>
         <Routes>
          <Route path="/" element={<HouseList/>} > </Route>
@@ -20,7 +26,7 @@ function App() {
          <Route path="/house/add" element={<HouseAdd />}></Route>
          <Route path="/house/edit/:id" element={<HouseEdit />}></Route>
         </Routes> 
-      
+        
       </div>
     </BrowserRouter>
   );
