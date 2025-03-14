@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAddBids, useFetchBids } from "../hooks/BidHooks";
 import { House } from "../types/house";
-import ApiStatus from "../../apiStatus";
+import ApiStatus from "../../utils/apiStatus";
 import { currencyFormatter } from "../../config";
 import { Bid } from "../types/bid";
 

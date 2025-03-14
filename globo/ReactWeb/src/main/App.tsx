@@ -6,6 +6,7 @@ import Header from './Header';
 import HouseDetail from '../house/HouseDetail';
 import HouseAdd from '../house/HouseAdd';
 import HouseEdit from '../house/HouseEdit';
+import Contact from '../contact/contact';
 import useFetchUser from "../hooks/UserHooks";
 import config from "../../config";
 
@@ -25,6 +26,7 @@ function App() {
          <Route path="/house/:id" element={<HouseDetail />}></Route>   
          <Route path="/house/add" element={<HouseAdd />}></Route>
          <Route path="/house/edit/:id" element={<HouseEdit />}></Route>
+         <Route path="/contact/" element={<Contact/>} ></Route>
         </Routes> 
         
       </div>

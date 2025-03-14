@@ -13,10 +13,11 @@ namespace ConfArch.Web.Controllers
     public class AccountController : Controller
     {
         private readonly IUserRepository userRepository;
-
-        public AccountController(IUserRepository userRepository)
+        private readonly ILogger _logger;
+        public AccountController(IUserRepository userRepository,ILogger<AccountController> logger)
         {
             this.userRepository = userRepository;
+            this._logger = logger;
         }
 
         public IActionResult Login()
@@ -28,6 +29,8 @@ namespace ConfArch.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginModel model)
         {
+            _logger.LogInformation("About page visited at {DT}", 
+            DateTime.UtcNow.ToLongTimeString());
             var user = userRepository.GetByUsernameAndPassword(model.Username, model.Password);
             if (user == null)
                 return Unauthorized();

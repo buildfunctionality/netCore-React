@@ -1,7 +1,7 @@
 import { useAddHouse } from "../hooks/HouseHooks";
 import { House } from "../types/house";
 import HouseForm from "./HouseForm";
-import ValidationSummary from "../../ValidationSummary"
+import ValidationSummary from "../../utils/ValidationSummary"
 
 const HouseAdd = () => {
     const addHouseMutation = useAddHouse();

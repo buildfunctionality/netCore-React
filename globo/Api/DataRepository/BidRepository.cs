@@ -1,12 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 
-public interface IBidRepository
-{
-    Task<List<BidDto>> Get(int houseId);
-
-    Task<BidDto> Add(BidDto bid);
-}
-
 public class BidRepository : IBidRepository
 {
     private readonly HouseDbContext context;
