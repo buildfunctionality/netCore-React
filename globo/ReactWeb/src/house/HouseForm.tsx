@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { House } from "../types/house";
-import toBase64 from "../../toBase64";
+import toBase64 from "../../utils/toBase64";
 
 type Args = {
     house: House;
